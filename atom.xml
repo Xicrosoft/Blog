@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://blog.xicrosoft.ml</id>
+    <title>Blog｜Xicrosoft</title>
+    <updated>2022-02-19T18:09:22.654Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="http://blog.xicrosoft.ml"/>
+    <link rel="self" href="http://blog.xicrosoft.ml/atom.xml"/>
+    <subtitle>&lt;span id=&quot;jinrishici-sentence&quot;&gt;Loading...&lt;/span&gt;
+&lt;script src=&quot;https://sdk.jinrishici.com/v2/browser/jinrishici.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</subtitle>
+    <logo>http://blog.xicrosoft.ml/images/avatar.png</logo>
+    <icon>http://blog.xicrosoft.ml/favicon.ico</icon>
+    <rights>All rights reserved 2022, Blog｜Xicrosoft</rights>
+</feed>
