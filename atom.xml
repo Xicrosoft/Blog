@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://blog.xicrosoft.ml/</id>
     <title>Xicrosoft&apos;s blog</title>
-    <updated>2022-02-20T02:56:57.316Z</updated>
+    <updated>2022-02-20T05:53:20.797Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://blog.xicrosoft.ml/"/>
     <link rel="self" href="http://blog.xicrosoft.ml/atom.xml"/>
@@ -11,4 +11,43 @@
     <logo>http://blog.xicrosoft.ml/images/avatar.png</logo>
     <icon>http://blog.xicrosoft.ml/favicon.ico</icon>
     <rights>All rights reserved 2022, Xicrosoft&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Xicrosoft's Blog友情链接交换说明]]></title>
+        <id>http://blog.xicrosoft.ml/post/xicrosofts-blog-you-qing-lian-jie-jiao-huan-shuo-ming/</id>
+        <link href="http://blog.xicrosoft.ml/post/xicrosofts-blog-you-qing-lian-jie-jiao-huan-shuo-ming/">
+        </link>
+        <updated>2022-02-20T05:28:45.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="友链交换申明">友链交换申明</h2>
+<p>本站主域与旗下所有子站点诚挚希望与个人博客、计算机技术、综合信息、大型论坛、地方论坛、分类信息、导航等网站交换友情链接。但拒绝与添加nofollow、JS跳转、无故撤链等网站交换。</p>
+<h2 id="友链交换条件">友链交换条件</h2>
+<ol>
+<li>网站内容要求健康积极，网站安全稳定，不得更换域名</li>
+<li>行业相关或频道网页内容相关，大型权威站点也可考虑</li>
+<li>行业主关键词百度自然排名前三、百度收录量大于等于100万、alexa全球排名5万以内的站点优先考虑</li>
+<li>网站不得出现被百度、360、搜狗、谷歌等主流搜索引擎惩罚的现状或记录，有意者，可自觉先行添加我方链接和对应关键词，然后联系我方进行处理</li>
+</ol>
+<h2 id="联系方式">联系方式</h2>
+<blockquote>
+<p>可使用 QQ、邮箱或在本篇文章下评论等方式联系我方</p>
+</blockquote>
+<ul>
+<li>
+<p>QQ</p>
+<ul>
+<li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=3429344117&amp;site=qq&amp;menu=yes">3429344117 ｜Xicrosoft</a></li>
+</ul>
+</li>
+<li>
+<p>邮箱</p>
+<ul>
+<li><a href="mailto:mail@xicrosoft.ml">mail@xicrosoft.ml</a></li>
+<li>注：审核成功后提醒邮件将会通过 message@xicrosoft.ml 推送至您的邮箱</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>提交审核时请标明邮箱、QQ、网站域名、网站图标，我们会尽快与您联系！</p>
+</blockquote>
+]]></content>
+    </entry>
 </feed>
