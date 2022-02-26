@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://blog.xicrosoft.ml/</id>
-    <title>Xicrosoft&apos;s blog</title>
-    <updated>2022-02-21T05:02:37.417Z</updated>
+    <title>Xicrosoft&apos;s	blog</title>
+    <updated>2022-02-26T05:20:02.969Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://blog.xicrosoft.ml/"/>
     <link rel="self" href="http://blog.xicrosoft.ml/atom.xml"/>
     <subtitle>&lt;span id=&quot;jinrishici-sentence&quot;&gt;Loading...&lt;/span&gt;
-&lt;script src=&quot;https://sdk.jinrishici.com/v2/browser/jinrishici.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</subtitle>
+&lt;script src=&quot;https://sdk.jinrishici.com/v2/browser/jinrishici.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;!-- require APlayer --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css&quot;&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js&quot;&gt;&lt;/script&gt;
+&lt;!-- require MetingJS --&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js&quot;&gt;&lt;/script&gt;
+&lt;meting-js
+        id=&quot;7309489610&quot;
+        lrc-type=&quot;0&quot;
+        server=&quot;netease&quot;
+        order=&quot;random&quot;
+        type=&quot;playlist&quot;
+        fixed=&quot;true&quot;
+        autoplay=&quot;true&quot;
+        list-olded=&quot;true&quot;&gt;
+&lt;/meting-js&gt;</subtitle>
     <logo>http://blog.xicrosoft.ml/images/avatar.png</logo>
     <icon>http://blog.xicrosoft.ml/favicon.ico</icon>
-    <rights>All rights reserved 2022, Xicrosoft&apos;s blog</rights>
+    <rights>All rights reserved 2022, Xicrosoft&apos;s	blog</rights>
 </feed>
