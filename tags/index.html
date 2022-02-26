@@ -4,9 +4,9 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>Xicrosoft&#39;s	blog</title>
+<title>Xicrosoft&#39;s	Blog</title>
 
-<link rel="shortcut icon" href="http://blog.xicrosoft.ml//favicon.ico?v=1645859291185">
+<link rel="shortcut icon" href="http://blog.xicrosoft.ml//favicon.ico?v=1645886617458">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://blog.xicrosoft.ml//styles/main.css">
@@ -45,7 +45,7 @@
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
-            Xicrosoft&#39;s	blog
+            Xicrosoft&#39;s	Blog
         </div>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -89,7 +89,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1645859291185" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1645886617458" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -108,7 +108,8 @@
 </div>
 </div>
         <div class="site-footer gt-c-content-color-first">
-    <div class="slogan gt-c-content-color-first"><span id="jinrishici-sentence">Loading...</span>
+    <div class="slogan gt-c-content-color-first"><!-- one say -->
+<span id="jinrishici-sentence">Loading...</span>
 <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
 <!-- require APlayer -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
@@ -124,7 +125,36 @@
         fixed="true"
         autoplay="true"
         list-olded="true">
-</meting-js></div>
+</meting-js>
+<!--copy plus-->
+<script type="text/javascript">
+var Sys = {};
+var ua = navigator.userAgent.toLowerCase();
+if( window.ActiveXObject ){
+    document.body.oncopy = function(){
+        event.returnValue = false;
+        var t=document.selection.createRange().text;
+        var s=" </br></br>原文链接："+location.href;
+        clipboardData.setData('Text',t+'\r\n'+s);
+    };
+}else{
+    function addLink(){
+        var body_element = document.getElementsByTagName('body')[0];
+        var selection;
+        selection = window.getSelection();
+        var pagelink = " </br></br>原文链接："+location.href;
+        var copytext = selection + pagelink;
+        var newdiv = document.createElement('div');
+        newdiv.style.position='absolute';
+        newdiv.style.left='-99999px';
+        body_element.appendChild(newdiv);
+        newdiv.innerHTML = copytext;
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function(){body_element.removeChild(newdiv);},0);
+    }
+    document.oncopy = addLink;
+}
+</script></div>
     <div class="social-container">
         
             
@@ -174,7 +204,7 @@
  document.write(+dni)
  </script> 天</p>
  </div>
-Copyright ©2022 Xicrosoft inc. Xuzixuan All rights reserved.｜<a href="/post/licenses">©版权声明</a>｜<a href="/atom.xml">RSS<a>
+Copyright ©<script type="text/javascript">document.write((new Date()).getFullYear());</script> Xicrosoft inc. Xuzixuan All rights reserved.｜<a href="/post/licenses">©版权声明</a>｜<a href="/atom.xml">RSS<a>
     </div>
 <script>
   hljs.initHighlightingOnLoad()

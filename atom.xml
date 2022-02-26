@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://blog.xicrosoft.ml/</id>
-    <title>Xicrosoft&apos;s	blog</title>
-    <updated>2022-02-26T07:08:12.912Z</updated>
+    <title>Xicrosoft&apos;s	Blog</title>
+    <updated>2022-02-26T14:43:39.305Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://blog.xicrosoft.ml/"/>
     <link rel="self" href="http://blog.xicrosoft.ml/atom.xml"/>
-    <subtitle>&lt;span id=&quot;jinrishici-sentence&quot;&gt;Loading...&lt;/span&gt;
+    <subtitle>&lt;!-- one say --&gt;
+&lt;span id=&quot;jinrishici-sentence&quot;&gt;Loading...&lt;/span&gt;
 &lt;script src=&quot;https://sdk.jinrishici.com/v2/browser/jinrishici.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
 &lt;!-- require APlayer --&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css&quot;&gt;
@@ -22,8 +23,37 @@
         fixed=&quot;true&quot;
         autoplay=&quot;true&quot;
         list-olded=&quot;true&quot;&gt;
-&lt;/meting-js&gt;</subtitle>
+&lt;/meting-js&gt;
+&lt;!--copy plus--&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var Sys = {};
+var ua = navigator.userAgent.toLowerCase();
+if( window.ActiveXObject ){
+    document.body.oncopy = function(){
+        event.returnValue = false;
+        var t=document.selection.createRange().text;
+        var s=&quot; &lt;/br&gt;&lt;/br&gt;原文链接：&quot;+location.href;
+        clipboardData.setData(&apos;Text&apos;,t+&apos;\r\n&apos;+s);
+    };
+}else{
+    function addLink(){
+        var body_element = document.getElementsByTagName(&apos;body&apos;)[0];
+        var selection;
+        selection = window.getSelection();
+        var pagelink = &quot; &lt;/br&gt;&lt;/br&gt;原文链接：&quot;+location.href;
+        var copytext = selection + pagelink;
+        var newdiv = document.createElement(&apos;div&apos;);
+        newdiv.style.position=&apos;absolute&apos;;
+        newdiv.style.left=&apos;-99999px&apos;;
+        body_element.appendChild(newdiv);
+        newdiv.innerHTML = copytext;
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function(){body_element.removeChild(newdiv);},0);
+    }
+    document.oncopy = addLink;
+}
+&lt;/script&gt;</subtitle>
     <logo>http://blog.xicrosoft.ml/images/avatar.png</logo>
     <icon>http://blog.xicrosoft.ml/favicon.ico</icon>
-    <rights>All rights reserved 2022, Xicrosoft&apos;s	blog</rights>
+    <rights>All rights reserved 2022, Xicrosoft&apos;s	Blog</rights>
 </feed>
