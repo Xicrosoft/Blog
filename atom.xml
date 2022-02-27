@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://blog.xicrosoft.ml/</id>
     <title>Xicrosoft&apos;s	Blog</title>
-    <updated>2022-02-27T15:57:51.977Z</updated>
+    <updated>2022-02-27T16:36:26.298Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://blog.xicrosoft.ml/"/>
     <link rel="self" href="http://blog.xicrosoft.ml/atom.xml"/>
@@ -10,4 +10,71 @@
     <logo>http://blog.xicrosoft.ml/images/avatar.png</logo>
     <icon>http://blog.xicrosoft.ml/favicon.ico</icon>
     <rights>All rights reserved 2022, Xicrosoft&apos;s	Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Mac 常见问题]]></title>
+        <id>http://blog.xicrosoft.ml/post/mac_ question/</id>
+        <link href="http://blog.xicrosoft.ml/post/mac_ question/">
+        </link>
+        <updated>2022-02-27T16:06:19.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="软件安装异常">软件安装异常</h2>
+<ul>
+<li>
+<p>提示 <code>zsh: bad CPU type in executable:xxx</code>。</p>
+<ul>
+<li>电脑未安装 Rosetta 2，打开终端，然后执行<code>/usr/sbin/softwareupdate --install-rosetta --agree-to-license</code>即可解决。</li>
+</ul>
+</li>
+<li>
+<p>提示 <code>zsh: no such file or directory: Volumes/xxxx/</code> 安装。</p>
+<ul>
+<li>安装了 Oh My Zsh 但是没有更新用户配置环境。打开终端，然后执行<code>PATH=/bin:/usr/bin:/usr/local/bin:${PATH}</code>，重新运行终端让其生效即可。</li>
+</ul>
+</li>
+<li>
+<p>应用运行闪退</p>
+<ul>
+<li>打开访达，进入<code>应用程序</code>目录，找到闪退应用，在应用图标上<strong>右键</strong>，点击<code>显示简介</code><br>
+<em>有些软件在这一级还是文件夹，比如 Adobe 的，只要右键没有<code>显示包内容</code>这个选项就证明是在文件夹上右键的，需要进入文件夹到到应用再右键。</em><br>
+安装或者勾选 使用 Rosetta 打开<br>
+勾选 使用 Rosetta 打开<br>
+如果没有这个选项的的话，有两种可能，第一种是电脑未安装 Rosetta 2，第二种是因为应用当前的架构是 Intel 而不是通用（下图通用区域的种类中有标注应用的架构是通用还是 Intel）。<br>
+如果是第一种情况，请打开终端执行以下命令安装一下 Rosetta 2：<br>
+/usr/sbin/softwareupdate --install-rosetta --agree-to-license<br>
+如果是第二种情况，那安装完 Rosetta 2 直接运行应用即可。</li>
+</ul>
+</li>
+</ul>
+<h2 id="关闭-sip">关闭 SIP</h2>
+<ol>
+<li>关机</li>
+<li>按住开机键不松手，点击<code>选项</code></li>
+<li>点击<code>继续</code></li>
+<li>点击菜单栏的<code>实用工具</code>，再点击<code>终端</code></li>
+<li>输入<code>csrutil disable</code>，然后按下 <kbd>Return</kbd> 键</li>
+<li>输入<code>y</code>，然后按下 <kbd>Return</kbd> 键</li>
+<li>输入您的电脑密码，然后按下 <kbd>Return</kbd> 键</li>
+</ol>
+<blockquote>
+<p>出现 System Integrity Protection is off. 证明 SIP 已成功关闭。</p>
+</blockquote>
+<ol start="8">
+<li>输入 reboot 然后按下回车也就是 return 键重启电脑即可。</li>
+<li>再开启 SIP，只需要将上面第 5 步的 csrutil disable 换成 csrutil enable 即可。</li>
+</ol>
+<h2 id="安全策略设置">安全策略设置</h2>
+<ol>
+<li>关机</li>
+<li>按住开机键不松,点击<code>选项</code></li>
+<li>点击<code>继续</code></li>
+<li>点击菜单栏的<code>实用工具</code>，再点击<code>启动安全性实用工具</code></li>
+<li>勾选 <code>允许用户管理来自被认可开发者的内核扩展</code></li>
+<li>输入<code>电脑密码</code>，点击<code>好</code>。</li>
+</ol>
+<hr>
+<blockquote>
+<p>本文使用 CC BY-NC-ND 4.0 许可协议   <a href="https://blog.xicrosoft.ml/post/licenses/">©版权声明</a><br>
+转载请注明原文链接与作者，且不可修改文中内容</p>
+</blockquote>
+]]></content>
+    </entry>
 </feed>
