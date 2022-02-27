@@ -6,7 +6,7 @@
 
 <title>Xicrosoft&#39;s	Blog</title>
 
-<link rel="shortcut icon" href="http://blog.xicrosoft.ml//favicon.ico?v=1645970429056">
+<link rel="shortcut icon" href="http://blog.xicrosoft.ml//favicon.ico?v=1645977471178">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://blog.xicrosoft.ml//styles/main.css">
@@ -89,7 +89,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1645970429056" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1645977471178" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -171,9 +171,86 @@ Copyright ©<script type="text/javascript">document.write((new Date()).getFullYe
 <!-- Tools -->
 
 <!--APlayer -->
-<link rel="stylesheet" href="/Tools/APlayer/Aplayer.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
+</head>
+<body>  
 <div id="aplayer"></div>
-<script src="/Tools/APlayer/Aplayer.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+<script>
+    const ap = new APlayer({
+     
+        container: document.getElementById('aplayer'),
+        fixed: true,
+        autoplay: true,
+        lrcType: 0,
+        mutex: true,
+        order: 'random',
+        preload: 'auto',
+        listFolded: false,
+        theme: '#242424',
+        audio: [
+        {
+        name: "Nevada",
+        artist: 'Vicetone',
+        url: 'http://music.163.com/song/media/outer/url?id=1920499693.mp3',
+        cover: 'http://p2.music.126.net/ifxF9yxIzU1-lZAm9GscWg==/109951163311434257.jpg',
+      },
+      {
+        name: 'Good Time',
+        artist: 'Owl City',
+        url: 'http://music.163.com/song/media/outer/url?id=1878815188.mp3',
+        cover: 'http://p1.music.126.net/-RxMP9fw2BidKc5-_H5njw==/109951166421345001.jpg',
+      },
+      {
+        name: 'Diary',
+        artist: 'Production Manic',
+        url: 'http://music.163.com/song/media/outer/url?id=1367900235.mp3',
+        cover: 'http://p2.music.126.net/-4GiPoFPOI6dV-f9jnUScQ==/109951164102703587.jpg',
+      },
+      {
+        name: 'Normal No More',
+        artist: 'TYSM',
+        url: 'http://music.163.com/song/media/outer/url?id=1919478852.mp3',
+        cover: 'http://p1.music.126.net/s3mKaXDECHZlxi43d7bkCA==/109951164905500417.jpg',
+      },
+      {
+        name: '溯Reverse',
+        artist: 'CORSAK',
+        url: 'http://music.163.com/song/media/outer/url?id=1893176983.mp3',
+        cover: 'http://p2.music.126.net/awh9K8lfyyOtr5X0ysgBFw==/109951164802649972.jpg',
+      },
+      {
+        name: 'Timber',
+        artist: 'CDM Project',
+        url: 'http://music.163.com/song/media/outer/url?id=1460606837.mp3',
+        cover: 'http://p2.music.126.net/WjVj_XCesBeCkDUOsg0vWA==/109951163804817824.jpg',
+        lrc:  '../LRC/Timber.lrc',
+      },
+      {
+        name: 'L.I.F.E.',
+        artist: 'Remady',
+        url: 'http://music.163.com/song/media/outer/url?id=459025526.mp3',
+        cover: 'http://p2.music.126.net/WjVj_XCesBeCkDUOsg0vWA==/109951163804817824.jpg',
+        lrc:  '../LRC/L.I.F.E..lrc',
+      },
+      {
+        name: '海市蜃楼',
+        artist: 'Remady',
+        url: 'http://music.163.com/song/media/outer/url?id=862768857.mp3',
+        cover: 'http://p2.music.126.net/WjVj_XCesBeCkDUOsg0vWA==/109951163804817824.jpg',
+        lrc:  '../LRC/L.I.F.E..lrc',
+      },
+      {
+        name: 'Breathe',
+        artist: ' joysaaaa',
+        url: 'http://music.163.com/song/media/outer/url?id=1831352877.mp3',
+        cover: 'http://p2.music.126.net/02aMvvyzD_jqzt1q5i-Nfg==/109951164643210368.jpg',
+        lrc:  '../LRC/Breathe.lrc',
+      }
+      ]
+    });
+</script>
+
 
 <!--copy plus-->
 <script type="text/javascript">
@@ -224,10 +301,6 @@ if( window.ActiveXObject ){
         }
     }
     </script>
-
-<!-- Click -->
-<script src="Tools/Click/Click.js"></script>
-<div id="clickCanvas" style=" position:fixed;left:0;top:0;z-index:999999999;pointer-events:none;"></div>
     </div>
 <script>
   hljs.initHighlightingOnLoad()
