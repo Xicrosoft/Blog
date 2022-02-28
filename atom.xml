@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://blog.xicrosoft.ml/</id>
     <title>Xicrosoft&apos;s	Blog</title>
-    <updated>2022-02-28T14:48:53.342Z</updated>
+    <updated>2022-02-28T15:18:26.016Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://blog.xicrosoft.ml/"/>
     <link rel="self" href="http://blog.xicrosoft.ml/atom.xml"/>
@@ -10,6 +10,78 @@
     <logo>http://blog.xicrosoft.ml/images/avatar.png</logo>
     <icon>http://blog.xicrosoft.ml/favicon.ico</icon>
     <rights>All rights reserved 2022, Xicrosoft&apos;s	Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[什么是Hosts]]></title>
+        <id>http://blog.xicrosoft.ml/post/hosts/</id>
+        <link href="http://blog.xicrosoft.ml/post/hosts/">
+        </link>
+        <updated>2022-02-28T15:02:40.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>Hosts 是一个没有扩展名的系统文件,作用是将一些常用的网址域名与其对应的IP地址建立一个关联数据库，当用户在浏览器中输入一个网址时，系统会首先自动从 Hosts 文件中寻找对应的 IP 地址，一旦找到，系统会根据你配置的 IP 进行访问，如果没有找到，则系统会将网址提交到 DNS 域名解析服务器进行 IP 地址的解析。</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>Hosts 是一个没有扩展名的系统文件,作用是将一些常用的网址域名与其对应的IP地址建立一个关联数据库，当用户在浏览器中输入一个网址时，系统会首先自动从 Hosts 文件中寻找对应的 IP 地址，一旦找到，系统会根据你配置的 IP 进行访问，如果没有找到，则系统会将网址提交到 DNS 域名解析服务器进行 IP 地址的解析。</p>
+</blockquote>
+<!-- more -->
+<p>简单点来说，比如你在你的系统 Hosts 里面加了一条数据：</p>
+<pre><code class="language-hosts">172.67.197.135  xicrosoft.blog
+</code></pre>
+<p>当你在浏览器输入 xicrosoft.blog 的时候系统会将 xicrosoft.blog 解析到 <a href="172.67.197.135">172.67.197.135</a>，即访问的是 xicrosoft.blog，但实际上它打开的是 <a href="172.67.197.135">172.67.197.135</a>（本站服务器IP），通过DNS解析域名<a href="blog.xicrosoft.ml">blog.xicrosoft.ml</a>得到的服务器IP<br>
+因此，有些网站会阻止您使用IP访问，如本站：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">IP访问</th>
+<th style="text-align:left">域名解析IP访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="172.67.197.135">172.67.197.135</a></td>
+<td style="text-align:left"><a href="blog.xicrosoft.ml">blog.xicrosoft.ml</a></td>
+</tr>
+</tbody>
+</table>
+<p>试一试点击上方的两个不同链接，就可以发现使用Hosts解析替代DNS解析可以绕过IP访问检测<br>
+<br><br>
+<br><br>
+<br></p>
+<p><ul class="markdownIt-TOC">
+<li><a href="#%E7%BC%96%E8%BE%91-hosts">编辑 Hosts</a></li>
+<li><a href="#%E6%9C%AA%E7%94%9F%E6%95%88">未生效？</a></li>
+</ul>
+</p>
+<h1 id="编辑-hosts">编辑 Hosts</h1>
+<ol>
+<li>在<code>桌面</code>点击顶部菜单栏的<code>前往</code>，再点击<code>前往文件夹</code><br>
+<em>快捷键：<kbd>command + shift + G</kbd></em></li>
+<li>输入<code>/etc</code>，然后回车或点击前住</li>
+<li>找到<code>hosts</code>文件，将其拖拽到桌面</li>
+<li>编辑桌面上的<code>hosts</code>文件</li>
+<li>编辑完成后将桌面上的<code>hosts</code>文件拖拽到 <code>/etc</code> 目录下替换系统 <code>hosts</code></li>
+<li>输入电脑密码或者使用 Touch ID 解锁完成替换。</li>
+</ol>
+<h1 id="未生效">未生效？</h1>
+<p>有部分用户可能修改完 Hosts 没有成功解析，请打开终端，分别执行以下两条命令即可：</p>
+<pre><code class="language-bash">/usr/bin/dscacheutil -flushcache
+</code></pre>
+<pre><code class="language-bash">sudo killall -HUP mDNSResponder
+</code></pre>
+<blockquote>
+<p>注意：第二条命令为 root 命令，执行的时需输入密码，输入完成回车即可。</p>
+</blockquote>
+<br>
+<br>
+<hr>
+<blockquote>
+<p>本文使用 CC BY-NC-ND 4.0 许可协议   <a href="https://blog.xicrosoft.ml/post/licenses/">©版权声明</a><br>
+著作权归 Xicrosoft's Blog 编辑团队所有<br>
+转载请注明原文链接与作者，且不可修改文中内容</p>
+</blockquote>
+<hr>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[MacOS 快捷键大全]]></title>
         <id>http://blog.xicrosoft.ml/post/macos-hot-key/</id>
@@ -74,12 +146,7 @@
 <li><a href="#%E8%AE%BF%E8%BE%BE%E4%B8%8E%E7%B3%BB%E7%BB%9F">访达与系统</a></li>
 </ul>
 </li>
-<li><a href="#%E5%86%99%E5%9C%A8%E5%90%8E%E9%9D%A2">写在后面</a>
-<ul>
-<li><a href="#brbr"><br><br>
-<br></a></li>
-</ul>
-</li>
+<li><a href="#%E5%86%99%E5%9C%A8%E5%90%8E%E9%9D%A2">写在后面</a></li>
 </ul>
 </p>
 <h1 id="与-windows-的差异">与 Windows 的差异</h1>
@@ -567,8 +634,9 @@
 <h1 id="写在后面">写在后面</h1>
 <p>快捷键可以在很多场景下帮助我们更快地完成一些复杂操作，熟练使用能大幅提高电脑的使用效率。所以，无论是 Windows 还是 MacOS，我们都应该记住一些最常用的命令。</p>
 <p>虽然这篇文章只是基础的入门教程，但事实上，很多用了多年苹果 Mac 电脑的同学都不知道原来 Mac 还有这么多好用的快捷键。不过，即使是快捷键高手，也不可能全部记住这些组合的，所以有需要的同学，请收藏好这篇文章日后随时查阅吧。</p>
-<h2 id="brbr"><br><br>
-<br></h2>
+<br>
+<br>
+<hr>
 <blockquote>
 <p>本文使用 CC BY-NC-ND 4.0 许可协议   <a href="https://blog.xicrosoft.ml/post/licenses/">©版权声明</a><br>
 著作权归 Xicrosoft's Blog 编辑团队所有<br>
@@ -593,12 +661,7 @@
 <!-- more -->
 <p><ul class="markdownIt-TOC">
 <li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-clt">什么是 CLT</a></li>
-<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">解决方法</a>
-<ul>
-<li><a href="#brbr"><br><br>
-<br></a></li>
-</ul>
-</li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">解决方法</a></li>
 </ul>
 </p>
 <h1 id="什么是-clt">什么是 CLT</h1>
@@ -642,8 +705,9 @@
 <ol start="5">
 <li>下载后安装即可使用。</li>
 </ol>
-<h2 id="brbr"><br><br>
-<br></h2>
+<br>
+<br>
+<hr>
 <blockquote>
 <p>本文使用 CC BY-NC-ND 4.0 许可协议   <a href="https://blog.xicrosoft.ml/post/licenses/">©版权声明</a><br>
 著作权归 Xicrosoft's Blog 编辑团队所有<br>
@@ -676,12 +740,7 @@
 </ul>
 </li>
 <li><a href="#%E5%85%B3%E9%97%AD-sip">关闭 SIP</a></li>
-<li><a href="#%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE">安全策略设置</a>
-<ul>
-<li><a href="#brbr"><br><br>
-<br></a></li>
-</ul>
-</li>
+<li><a href="#%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE">安全策略设置</a></li>
 </ul>
 </p>
 <h1 id="软件安装异常">软件安装异常</h1>
@@ -730,8 +789,9 @@
 <li>勾选 <code>允许用户管理来自被认可开发者的内核扩展</code></li>
 <li>输入<code>电脑密码</code>，点击<code>好</code>。</li>
 </ol>
-<h2 id="brbr"><br><br>
-<br></h2>
+<br>
+<br>
+<hr>
 <blockquote>
 <p>本文使用 CC BY-NC-ND 4.0 许可协议   <a href="https://blog.xicrosoft.ml/post/licenses/">©版权声明</a><br>
 著作权归 Xicrosoft's Blog 编辑团队所有<br>
@@ -758,12 +818,7 @@
 <!-- more -->
 <p><ul class="markdownIt-TOC">
 <li><a href="#%E5%BA%94%E7%94%A8%E5%85%AC%E8%AF%81">应用公证</a></li>
-<li><a href="#%E4%B8%8D%E7%AD%BE%E5%90%8D%E7%AD%BE%E5%90%8D%E5%A4%B1%E6%95%88%E4%BC%9A%E6%80%8E%E6%A0%B7">不签名/签名失效会怎样？</a>
-<ul>
-<li><a href="#brbr"><br><br>
-<br></a></li>
-</ul>
-</li>
+<li><a href="#%E4%B8%8D%E7%AD%BE%E5%90%8D%E7%AD%BE%E5%90%8D%E5%A4%B1%E6%95%88%E4%BC%9A%E6%80%8E%E6%A0%B7">不签名/签名失效会怎样？</a></li>
 </ul>
 </p>
 <p>#什么是签名？<br>
@@ -855,8 +910,9 @@
 <blockquote>
 <p>开源软件大多都没有购买开发者证书对应用签名，而破解版几乎都会修改应用文件，此时你需要自行判断应用来源是否安全。</p>
 </blockquote>
-<h2 id="brbr"><br><br>
-<br></h2>
+<br>
+<br>
+<hr>
 <blockquote>
 <p>本文使用 CC BY-NC-ND 4.0 许可协议   <a href="https://blog.xicrosoft.ml/post/licenses/">©版权声明</a><br>
 著作权归 Xicrosoft's Blog 编辑团队所有<br>
