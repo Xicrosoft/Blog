@@ -1823,11 +1823,11 @@ code::-webkit-scrollbar-thumb:hover {
 }
 
         .gt-bg-theme-color-first {
-          background: #0c0b0c!important;
+          background: #1a1a1a!important;
         }
         
         .gt-bg-theme-color-second {
-          background: #16161a!important;
+          background: #2e2e2e!important;
         }
         
         .gt-bg-content-color-first {
@@ -1847,11 +1847,11 @@ code::-webkit-scrollbar-thumb:hover {
         }
         
         .gt-c-theme-color-first {
-          color: #0c0b0c!important;
+          color: #1a1a1a!important;
         }
         
         .gt-c-theme-color-second {
-          color: #16161a!important;
+          color: #2e2e2e!important;
         }
         
         .gt-c-content-color-first {
@@ -1917,6 +1917,6 @@ code::-webkit-scrollbar-thumb:hover {
         
         .search-input {
           color: #d3d3d3!important;
-          background-color: #16161a!important;
+          background-color: #2e2e2e!important;
         }
          

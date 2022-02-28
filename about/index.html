@@ -6,7 +6,7 @@
 
 <title>关于 - Xicrosoft&#39;s	Blog</title>
 
-<link rel="shortcut icon" href="http://blog.xicrosoft.ml//favicon.ico?v=1645979842125">
+<link rel="shortcut icon" href="http://blog.xicrosoft.ml//favicon.ico?v=1646023325733">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://blog.xicrosoft.ml//styles/main.css">
@@ -89,7 +89,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1645979842125" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1646023325733" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -222,6 +222,8 @@ Copyright ©<script type="text/javascript">document.write((new Date()).getFullYe
 <!-- Tools -->
 
 <!--APlayer -->
+
+<!--APlayer -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
 </head>
 <body>  
@@ -233,7 +235,7 @@ Copyright ©<script type="text/javascript">document.write((new Date()).getFullYe
         container: document.getElementById('aplayer'),
         fixed: true,
         autoplay: true,
-        lrcType: 1,
+        lrcType: 0,
         mutex: true,
         order: 'random',
         preload: 'auto',
@@ -244,13 +246,13 @@ Copyright ©<script type="text/javascript">document.write((new Date()).getFullYe
         name: "Nevada",
         artist: 'Vicetone',
         url: 'http://music.163.com/song/media/outer/url?id=1920499693.mp3',
-        cover: 'http://p2.music.126.net/ifxF9yxIzU1-lZAm9GscWg==/109951163311434257.jpg',
+        cover: 'http://p2.music.126.net/Rh1-t6gy1sQs0HWvqzsuDA==/109951167052639111.jpg',
       },
       {
         name: 'Good Time',
         artist: 'Owl City',
         url: 'http://music.163.com/song/media/outer/url?id=1878815188.mp3',
-        cover: 'http://p1.music.126.net/-RxMP9fw2BidKc5-_H5njw==/109951166421345001.jpg',
+        cover: 'http://p1.music.126.net/c5NVKUIAUcyN4BQUDbGnEg==/109951163221157827.jpg',
       },
       {
         name: 'Diary',
@@ -281,26 +283,92 @@ Copyright ©<script type="text/javascript">document.write((new Date()).getFullYe
         name: 'L.I.F.E.',
         artist: 'Remady',
         url: 'http://music.163.com/song/media/outer/url?id=459025526.mp3',
-        cover: 'http://p2.music.126.net/WjVj_XCesBeCkDUOsg0vWA==/109951163804817824.jpg',
+        cover: 'http://p2.music.126.net/YjBiIYfc2jJpR7yaTrMK9w==/109951165976180004.jpg',
         lrc:  '../LRC/L.I.F.E..lrc',
       },
       {
-        name: '海市蜃楼',
-        artist: 'Remady',
-        url: 'http://music.163.com/song/media/outer/url?id=862768857.mp3',
-        cover: 'http://p2.music.126.net/WjVj_XCesBeCkDUOsg0vWA==/109951163804817824.jpg',
+        name: 'Breath',
+        artist: 'Pluto｜ye.',
+        url: 'http://music.163.com/song/media/outer/url?id=426026689.mp3',
+        cover: 'http://p1.music.126.net/2BVXxrUgiJ6y3lSwDMMyyQ==/18560855788522506.jpg',
         lrc:  '../LRC/L.I.F.E..lrc',
       },
       {
         name: 'Breathe',
-        artist: ' joysaaaa',
-        url: 'http://music.163.com/song/media/outer/url?id=1831352877.mp3',
-        cover: 'http://p2.music.126.net/02aMvvyzD_jqzt1q5i-Nfg==/109951164643210368.jpg',
-        lrc:  '../LRC/Breathe.lrc',
+        artist: 'Remady',
+        url: 'http://music.163.com/song/media/outer/url?id=862768857.mp3',
+        cover: 'http://p1.music.126.net/02aMvvyzD_jqzt1q5i-Nfg==/109951164643210368.jpg',
+        lrc:  '../LRC/L.I.F.E..lrc',
       }
       ]
     });
 </script>
+
+
+<!-- Go Play -->
+<script>
+    $(document).ready(function(){
+        if (typeof (Storage) !== 'undefined' && sessionStorage.getItem('playStatus') !== null) {
+            var index = sessionStorage.getItem('musicIndex');
+            var playStatus = sessionStorage.getItem('playStatus');
+            var currentTime = sessionStorage.getItem('currentTime');
+            var mode = sessionStorage.getItem('mode');
+            var list = sessionStorage.getItem('list');
+            var lrc = sessionStorage.getItem('lrc');
+            ap.list.switch(index);
+            ap.setMode(mode);
+            lrc==='false' ? ap.lrc && ap.lrc.show() : (ap.template.lrcButton.classList.add("aplayer-icon-lrc-inactivity"), ap.lrc && ap.lrc.hide())
+            list==='false' ? ap.list.show() : ap.list.hide();
+            ap.audio.currentTime = currentTime; //设置播放进度
+            if(playStatus === 'false'){
+                ap.play();
+            }
+        }
+        setInterval(function () {
+            if (typeof (Storage) !== 'undefined') {
+                window.sessionStorage.setItem('playStatus', ap.audio.paused);
+                window.sessionStorage.setItem('currentTime', ap.audio.currentTime);
+                window.sessionStorage.setItem('musicIndex', ap.list.index);
+                window.sessionStorage.setItem('mode', ap.mode);
+                window.sessionStorage.setItem('list', ap.template.list.classList.contains("aplayer-list-hide"));
+                window.sessionStorage.setItem('lrc', ap.template.lrcButton.classList.contains("aplayer-icon-lrc-inactivity"));
+            }
+        }, 100);
+    })
+</script>
+
+<!-- Go Play -->
+<script>
+    $(document).ready(function(){
+        if (typeof (Storage) !== 'undefined' && sessionStorage.getItem('playStatus') !== null) {
+            var index = sessionStorage.getItem('musicIndex');
+            var playStatus = sessionStorage.getItem('playStatus');
+            var currentTime = sessionStorage.getItem('currentTime');
+            var mode = sessionStorage.getItem('mode');
+            var list = sessionStorage.getItem('list');
+            var lrc = sessionStorage.getItem('lrc');
+            ap.list.switch(index);
+            ap.setMode(mode);
+            lrc==='false' ? ap.lrc && ap.lrc.show() : (ap.template.lrcButton.classList.add("aplayer-icon-lrc-inactivity"), ap.lrc && ap.lrc.hide())
+            list==='false' ? ap.list.show() : ap.list.hide();
+            ap.audio.currentTime = currentTime; //设置播放进度
+            if(playStatus === 'false'){
+                ap.play();
+            }
+        }
+        setInterval(function () {
+            if (typeof (Storage) !== 'undefined') {
+                window.sessionStorage.setItem('playStatus', ap.audio.paused);
+                window.sessionStorage.setItem('currentTime', ap.audio.currentTime);
+                window.sessionStorage.setItem('musicIndex', ap.list.index);
+                window.sessionStorage.setItem('mode', ap.mode);
+                window.sessionStorage.setItem('list', ap.template.list.classList.contains("aplayer-list-hide"));
+                window.sessionStorage.setItem('lrc', ap.template.lrcButton.classList.contains("aplayer-icon-lrc-inactivity"));
+            }
+        }, 100);
+    })
+</script>
+
 
 
 <!--copy plus-->
