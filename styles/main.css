@@ -1831,11 +1831,11 @@ code::-webkit-scrollbar-thumb:hover {
         }
         
         .gt-bg-content-color-first {
-          background: #f1f3f5!important;
+          background: #f8f9fa!important;
         }
         
         .gt-bg-content-color-second {
-          background: #e9ecef!important;
+          background: #f1f3f5!important;
         }
         
         .gt-bg-accent-color-first {
@@ -1855,11 +1855,11 @@ code::-webkit-scrollbar-thumb:hover {
         }
         
         .gt-c-content-color-first {
-          color: #f1f3f5!important;
+          color: #f8f9fa!important;
         }
         
         .gt-c-content-color-second {
-          color: #e9ecef!important;
+          color: #f1f3f5!important;
         }
         
         .gt-c-accent-color-first {
@@ -1871,7 +1871,7 @@ code::-webkit-scrollbar-thumb:hover {
         }
         
         body {
-          color: #f1f3f5!important;
+          color: #f8f9fa!important;
         }
         
         a {
@@ -1880,20 +1880,20 @@ code::-webkit-scrollbar-thumb:hover {
         
         .post-content h1 {
           display: inline-block;
-          color: #f1f3f5!important;
+          color: #f8f9fa!important;
           position: relative!important;
           background: linear-gradient(180deg, transparent 75%, RGBA(77,171,247,0.4) 0)!important;
         }
         
         .post-content h2 {
           display: inline-block;
-          color: #f1f3f5!important;
+          color: #f8f9fa!important;
           position: relative!important;
           background: linear-gradient(180deg, transparent 75%, RGBA(77,171,247,0.4) 0)!important;
         }
         
         .gt-a-link {
-          color: #f1f3f5!important;
+          color: #f8f9fa!important;
           position: relative!important;
           background: linear-gradient(180deg, transparent 75%, RGBA(77,171,247,0.4) 0)!important;
         }
@@ -1912,11 +1912,11 @@ code::-webkit-scrollbar-thumb:hover {
         }
         
         input::placeholder {
-          color: #e9ecef!important;
+          color: #f1f3f5!important;
         }
         
         .search-input {
-          color: #f1f3f5!important;
+          color: #f8f9fa!important;
           background-color: #2e2e2e!important;
         }
          
