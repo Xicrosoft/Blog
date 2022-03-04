@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>MacOS 常见问题 | Xicrosoft&#39;s Blog</title>
+<title>SIP 完整性保护 | Xicrosoft&#39;s Blog</title>
 
 <link rel="shortcut icon" href="http://blog.xicrosoft.ml//favicon.ico?v=1646409530929">
 
@@ -101,12 +101,20 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    MacOS 常见问题
+                    SIP 完整性保护
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2022-02-28 ·
+                        · 2022-03-04 ·
                     </time>
+                    
+                        <a href="http://blog.xicrosoft.ml/tag/ security/" class="post-tags">
+                            # 安全
+                        </a>
+                    
+                        <a href="http://blog.xicrosoft.ml/tag/tutorial/" class="post-tags">
+                            # 教程
+                        </a>
                     
                         <a href="http://blog.xicrosoft.ml/tag/mac-os/" class="post-tags">
                             # Mac OS
@@ -119,67 +127,93 @@
                 </div>
                 <div class="post-content">
                     <blockquote>
-<p>这里有一些MacOS 使用过程中的常见问题</p>
+<p>系统完整性保护是 macOS 所采用的一项安全技术，能够帮助防止潜在恶意软件修改 Mac 上受保护的文件和文件夹。系统完整性保护可以限制 root 用户帐户，以及 root 用户能够在 Mac 操作系统的受保护部分完成的操作。</p>
 </blockquote>
 <!-- more -->
-<p><ul class="markdownIt-TOC">
-<li><a href="#%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%BC%82%E5%B8%B8">软件安装异常</a><br>
-*
-<ul>
-<li><a href="#%E6%8F%90%E7%A4%BA-bad-cpu-type-in-executable">提示 Bad CPU Type In Executable</a></li>
-<li><a href="#%E6%8F%90%E7%A4%BA-no-such-file-or-directory">提示 No Such File Or Directory</a></li>
-<li><a href="#%E5%BA%94%E7%94%A8%E8%BF%90%E8%A1%8C%E9%97%AA%E9%80%80">应用运行闪退</a></li>
-</ul>
-</li>
-<li><a href="#%E5%85%B3%E9%97%AD-sip">关闭 SIP</a></li>
-<li><a href="#%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE">安全策略设置</a></li>
-</ul>
-</p>
-<h1 id="软件安装异常">软件安装异常</h1>
-<h3 id="提示-bad-cpu-type-in-executable">提示 Bad CPU Type In Executable</h3>
+<p><strong>SIP</strong> 类似 Windows 的防火墙，安卓手机 Root<br>
+要更好的理解 SIP 可以做什么，我们需要先来了解一个概念：<strong>沙盒</strong></p>
+<h1 id="沙盒">沙盒</h1>
+<p>MacOS 自从 10.6 系统开始引入了沙盒机制，规定发布到 Mac App Store 中的应用必须使用并遵守沙盒约定。沙盒对应用访问的系统文件、硬件信息、网络等等都做了严格的限制，这样可以防止恶意的 App 通过系统漏洞来攻击系统并获取控制权限，也可以避免应用越权执行不安全的操作导致系统出现故障，从而保障 macOS 系统的安全。<br>
+沙盒相当于给每个 App 一个独立的空间，要获取自己空间之外的资源必须获得授权。</p>
+<p>上面说了，因为 Mac App Store 中的应用必须要遵循沙盒约定，所以苹果应用商店的软件都是用沙盒运行的，无法访问修改系统底层文件，所以大部分软件如果想做的功能强一些又想上架 AppStore 那只能发阉割版的了。很多优秀软件没有在 Apple Store 上架就是因为需要一些沙盒外的资源权限，于是一些软件采取双版本，分为官方版全功能版和 App Store 精简版，就是因为这个原因，比如腾讯柠檬之类的系统应用。</p>
+<h1 id="macos-应用的安全划分">MacOS 应用的安全划分</h1>
 <blockquote>
-<p><code>zsh: bad CPU type in executable:xxx</code></p>
+<p>综上所述，我们可以把 macOS 应用按安全来划分为这三类：</p>
 </blockquote>
-<p>电脑未安装 Rosetta 2，打开终端，然后执行<code>/usr/sbin/softwareupdate --install-rosetta --agree-to-license</code>即可解决。</p>
-<h3 id="提示-no-such-file-or-directory">提示 No Such File Or Directory</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">安全等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">沙盒运行</td>
+<td style="text-align:left">严格遵守苹果的沙盒机制，只能访问限定的目录及执行有限的操作</td>
+<td style="text-align:left">高</td>
+</tr>
+<tr>
+<td style="text-align:left">未关闭 SIP 且不使用沙盒运行</td>
+<td style="text-align:left">除系统底层受保护的文件外，通过用户授权后可以访问及修改任意文件</td>
+<td style="text-align:left">中</td>
+</tr>
+<tr>
+<td style="text-align:left">关闭 SIP 且不使用沙盒运行</td>
+<td style="text-align:left">几乎可以访问及修改所有系统文件。</td>
+<td style="text-align:left">低</td>
+</tr>
+</tbody>
+</table>
+<h1 id="关闭-sip-的影响">关闭 SIP 的影响</h1>
+<p>关闭 SIP 后运行应用将不会再提示：</p>
 <blockquote>
-<p><code>zsh: no such file or directory: Volumes/xxxx/</code></p>
+<p>×××已损坏，无法打开，你应该将它移到废纸篓解决办法<br>
+打不开×××，因为它来自身份不明的开发者<br>
+打不开×××，因为 Apple 无法检查其是否包含恶意软件</p>
 </blockquote>
-<p>安装了 Oh My Zsh 但是没有更新用户配置环境。打开终端，然后执行<code>PATH=/bin:/usr/bin:/usr/local/bin:${PATH}</code>，重新运行终端让其生效即可。</p>
-<h3 id="应用运行闪退">应用运行闪退</h3>
-<p>打开访达，进入<code>应用程序</code>目录，找到闪退应用，在应用图标上<strong>右键</strong>，点击<code>显示简介</code><br>
-<em>有些软件在这一级还是文件夹，比如 Adobe 的，只要右键没有<code>显示包内容</code>这个选项就证明是在文件夹上右键的，需要进入文件夹到到应用再右键。</em><br>
-安装或者勾选 使用 Rosetta 打开<br>
-勾选 使用 Rosetta 打开<br>
-如果没有这个选项的的话，有两种可能，第一种是电脑未安装 Rosetta 2，第二种是因为应用当前的架构是 Intel 而不是通用（下图通用区域的种类中有标注应用的架构是通用还是 Intel）。<br>
-如果是第一种情况，请打开终端执行以下命令安装一下 Rosetta 2：<br>
-/usr/sbin/softwareupdate --install-rosetta --agree-to-license<br>
-如果是第二种情况，那安装完 Rosetta 2 直接运行应用即可。</p>
+<p>也就是说，只要应用本身可以运行，那不管应用是否签名/公证，不管应用是不是恶意应用，你打开后它都会直接运行在你的系统中，此时你的电脑如同透明，毫无安全可言，它可以操作你系统的所有文件，如果这个应用是恶意应用，如果你不小心对它授权过，那它后面可以不经你允许在你系统上进行任何操作。</p>
+<p><span style="color:#FF4954;font-family:Quicksand, -apple-system, &quot;font-size:30px;font-weight:600;background-color:#171717;"><strong><span style="font-size:16px;">所以如非必要，强烈不建议关闭 SIP！<br>如果一定要使用某个而需要关闭 SIP 的应用，就一定要自行判断一下应用的来源是否安全。</span><br></strong></span></p>
 <h1 id="关闭-sip">关闭 SIP</h1>
+<h2 id="准备">准备</h2>
+<h3 id="检查-sip-状态">检查 SIP 状态</h3>
+<blockquote>
+<p>在sip系统完整性关闭前，需要先检查是否启用了SIP系统完整性保护。</p>
+</blockquote>
+<ol>
+<li>打开终端输入<code>csrutil status</code>并执行</li>
+<li>你会看到以下信息中的一个，指示SIP状态</li>
+</ol>
+<blockquote>
+<p>未关闭 <code>enabled</code>:<br>
+<code>System Integrity Protection status: enabled.</code><br>
+已关闭 <code>disabled</code>:<br>
+<code>System Integrity Protection status: disabled</code></p>
+</blockquote>
+<p>如果是未关闭状态就需要关闭SIP</p>
+<h2 id="arm-m1">ARM M1</h2>
 <ol>
 <li>关机</li>
 <li>按住开机键不松手，点击<code>选项</code></li>
 <li>点击<code>继续</code></li>
 <li>点击菜单栏的<code>实用工具</code>，再点击<code>终端</code></li>
-<li>输入<code>csrutil disable</code>，然后按下 <kbd>Return</kbd> 键</li>
-<li>输入<code>y</code>，然后按下 <kbd>Return</kbd> 键</li>
-<li>输入您的电脑密码，然后按下 <kbd>Return</kbd> 键</li>
+<li>输入<code>csrutil disable</code>，然后按下 <kbd>Return</kdb> 键</li>
+<li>输入<code>y</code>，然后按下 <kbd>Return</kdb> 键</li>
+<li>输入您的电脑密码，然后按下 <kbd>Return</kdb> 键</li>
+<li>等待执行结果……</li>
+<li>出现 <code>System Integrity Protection is off.</code> 证明 SIP 已成功关闭。</li>
+<li>输入 reboot 然后按下 <kbd>Return</kdb> 键重启电脑即可。</li>
+<li>如想再开启 SIP，只需要将上面第 5 步的 <code>csrutil disable</code> 换成 <code>csrutil enable</code> 即可。</li>
 </ol>
-<blockquote>
-<p>出现 <code>System Integrity Protection is off.</code> 证明 SIP 已成功关闭。</p>
-</blockquote>
-<ol start="8">
-<li>输入 <code>reboot</code> 然后按下<kbd>Return</kbd> 键重启电脑即可。</li>
-<li>再开启 SIP，只需要将上面第 5 步的 <code>csrutil disable</code> 换成 <code>csrutil enable</code> 即可。</li>
-</ol>
-<h1 id="安全策略设置">安全策略设置</h1>
+<h2 id="intel-处理器">Intel 处理器</h2>
+<p>MacOS  12.×  Monterey（Intel 处理器） 及以下系统关闭 SIP 步骤：</p>
 <ol>
 <li>关机</li>
-<li>按住开机键不松,点击<code>选项</code></li>
-<li>点击<code>继续</code></li>
-<li>点击菜单栏的<code>实用工具</code>，再点击<code>启动安全性实用工具</code></li>
-<li>勾选 <code>允许用户管理来自被认可开发者的内核扩展</code></li>
-<li>输入<code>电脑密码</code>，点击<code>好</code>。</li>
+<li>重新启动Mac电脑，在开机时按住<kbd>Command+R</kbd>迸入<code>Recovery</code>模式。</li>
+<li>进入<code>Recovery</code>模式后打开<code>终端</code></li>
+<li>在终端上输入命令 <code>csrutil disable</code> 然后回车。</li>
+<li>点击左上角<code>苹果图标</code>，再点击<code>重新启动</code></li>
 </ol>
 <br>
 <br>
@@ -198,8 +232,8 @@
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="http://blog.xicrosoft.ml/post/macos-app-security/" class="post-title gt-a-link">
-                    MacOS 应用安全
+                <a href="http://blog.xicrosoft.ml/post/hosts/" class="post-title gt-a-link">
+                    什么是Hosts
                 </a>
             </div>
         
