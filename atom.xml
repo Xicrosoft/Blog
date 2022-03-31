@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://blog.xicrosoft.ml/</id>
     <title>Xicrosoft&apos;s Blog</title>
-    <updated>2022-03-05T04:37:57.276Z</updated>
+    <updated>2022-03-31T15:05:46.350Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://blog.xicrosoft.ml/"/>
     <link rel="self" href="http://blog.xicrosoft.ml/atom.xml"/>
@@ -10,6 +10,242 @@
     <logo>http://blog.xicrosoft.ml/images/avatar.png</logo>
     <icon>http://blog.xicrosoft.ml/favicon.ico</icon>
     <rights>All rights reserved 2022, Xicrosoft&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[如何搭建 WordPress]]></title>
+        <id>http://blog.xicrosoft.ml/post/wordpress/</id>
+        <link href="http://blog.xicrosoft.ml/post/wordpress/">
+        </link>
+        <updated>2022-03-31T14:34:12.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>WordPress是使用PHP语言开发的博客平台，在支持PHP和MySQL数据库的服务器上，您可以用它架设自己的网站，也可以用作内容管理系统。本教程介绍如何在Linux操作系统的ECS实例上搭建WordPress网站。</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>WordPress是使用PHP语言开发的博客平台，在支持PHP和MySQL数据库的服务器上，您可以用它架设自己的网站，也可以用作内容管理系统。本教程介绍如何在Linux操作系统的ECS实例上搭建WordPress网站。</p>
+</blockquote>
+<!-- more -->
+<h1 id="前提条件">前提条件</h1>
+<ul>
+<li>服务器</li>
+<li>Nginx</li>
+<li>MySQL</li>
+<li>PHP</li>
+<li>WordPress</li>
+</ul>
+<blockquote>
+<p>这里使用Linux服务器作为演示</p>
+</blockquote>
+<h2 id="搭建wordpress网站">搭建WordPress网站</h2>
+<blockquote>
+<p>通过ECS控制台，远程连接已部署LNMP环境的ECS实例，配置WordPress数据库。</p>
+</blockquote>
+<ol>
+<li>
+<p>远程连接ECS实例。</p>
+</li>
+<li>
+<p>进入MySQL数据库。<br>
+使用root用户登录MySQL，并输入密码。密码为您在搭建环境时为数据库设置的密码。</p>
+</li>
+</ol>
+<pre><code class="language-sql">mysql -uroot -p
+</code></pre>
+<ol start="3">
+<li>为WordPress网站创建数据库。<br>
+本教程中数据库名为<code>wordpress</code>。</li>
+</ol>
+<pre><code class="language-sql">create database wordpress;
+</code></pre>
+<ol start="4">
+<li>创建一个新用户管理WordPress库，提高安全性。<br>
+MySQL在5.7版本后默认安装了密码强度验证插件<code>validate_password</code>。您可以登录MySQL后查看密码强度规则。</li>
+</ol>
+<pre><code class="language-sql">show variables like &quot;%password%&quot;;
+</code></pre>
+<ol start="5">
+<li>本教程中创建新用户<code>user</code>，新用户密码为<code>PASSword123</code>。</li>
+</ol>
+<pre><code class="language-sql">create user 'user'@'localhost' identified by 'PASSword123';
+</code></pre>
+<ol start="6">
+<li>赋予用户对数据库wordpress的全部权限。</li>
+</ol>
+<pre><code class="language-sql">grant all privileges on wordpress.* to 'user'@'localhost' identified by 'PASSword123';```
+使配置生效。
+```sql
+flush privileges;
+</code></pre>
+<p>退出MySQL。</p>
+<pre><code class="language-sql">exit;
+</code></pre>
+<h2 id="下载wordpress">下载WordPress。</h2>
+<ol>
+<li>通过<code>yum</code>命令下载的WordPress保存在<code>/usr/share/wordpress</code>目录下。</li>
+</ol>
+<pre><code class="language-bash">yum -y install wordpress
+</code></pre>
+<ol start="2">
+<li>将下载的WordPress移动至网站根目录。</li>
+</ol>
+<pre><code class="language-bash">mv /usr/share/wordpress /usr/share/nginx/html/wordpress
+</code></pre>
+<ol start="3">
+<li>修改WordPress配置文件。<br>
+进入移动后的WordPress路径下，软连接配置文件<code>wp-config.php</code>。</li>
+</ol>
+<pre><code class="language-bash">cd /usr/share/nginx/html/wordpress
+</code></pre>
+<pre><code class="language-bash">ln -snf /etc/wordpress/wp-config.php wp-config.php
+</code></pre>
+<ol start="4">
+<li>编辑<code>wp-config.php</code>文件。</li>
+</ol>
+<pre><code class="language-bash">vim wp-config.php
+</code></pre>
+<ol start="5">
+<li>按<code>i</code>键切换至编辑模式，根据已配置的WordPress数据库信息，修改MySQL相关配置信息，修改代码如下所示。</li>
+<li>WordPress网站的数据信息将通过数据库的user用户保存在名为wordpress的数据库中。</li>
+</ol>
+<pre><code class="language-sql">// ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //
+/** WordPress数据库的名称 */
+define('DB_NAME', 'wordpress');
+
+/** MySQL数据库用户名 */
+define('DB_USER', 'user');
+
+/** MySQL数据库密码 */
+define('DB_PASSWORD', 'PASSword123.');
+
+/** MySQL主机 */
+define('DB_HOST', 'localhost');
+</code></pre>
+<ol start="7">
+<li>修改完成后，按下<code>Esc</code>键后，输入<code>:wq</code>并回车，保存退出配置文件。</li>
+<li>修改Nginx配置文件。</li>
+<li>运行以下命令打开Nginx配置文件。</li>
+</ol>
+<pre><code class="language-bash">vim /etc/nginx/nginx.conf
+</code></pre>
+<ol start="10">
+<li>
+<p>按<code>i</code>键进入编辑模式。</p>
+</li>
+<li>
+<p>在<code>server</code>大括号内，将<code>root</code>后的内容替换为WordPress根目录。本示例中根目录为<code>/usr/share/nginx/html/wordpress</code>。<br>
+<img src="http://blog.xicrosoft.ml//post-images/1648738514442.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>在<code>location ~ .php$</code>大括号内，将<code>root</code>后的内容替换为WordPress根目录。<br>
+<img src="http://blog.xicrosoft.ml//post-images/1648738576769.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>修改完成后按Esc键，输入:wq并回车，保存退出配置文件。</p>
+</li>
+<li>
+<p>运行以下命令重启Nginx服务。</p>
+</li>
+</ol>
+<pre><code class="language-bash">systemctl restart nginx
+</code></pre>
+<h2 id="安装并登录wordpress网站">安装并登录WordPress网站</h2>
+<ol>
+<li>在本地物理机上使用浏览器访问ECS实例公网IP，进入WordPress安装页面。</li>
+<li>填写网站基本信息，然后单击安装WordPress。</li>
+<li>填写信息参数说明：</li>
+</ol>
+<blockquote>
+<p>站点标题：WordPress网站的名称。例如：demowp。<br>
+用户名：登录WordPress时所需的用户名，请注意安全性。例如：testwp。<br>
+密码：登录WordPress时所需的密码，建议您设置安全性高的密码。例如：Wp.123456。<br>
+您的电子邮件：用于接收通知的电子邮件。例如：admin@xicrosoft.ml。</p>
+</blockquote>
+<ol start="4">
+<li>单击登录。</li>
+<li>输入在安装WordPress时设置的用户名<code>testwp</code>和密码<code>Wp.123456</code>，然后单击登录。</li>
+<li>成功进入您个人的WordPress网站。</li>
+</ol>
+<h2 id="解析wordpress网站域名">解析WordPress网站域名</h2>
+<blockquote>
+<p>通过实例公网IP地址直接访问您的WordPress网站会降低服务端的安全性。如果您已有域名或者想为WordPress网站注册一个域名，可以参考以下步骤。本示例注册域名为<code>www.xicrosoft.ml</code>。</p>
+</blockquote>
+<ol>
+<li>返回ECS控制台，远程连接已搭建WordPress网站的ECS实例，登录MySQL数据库。</li>
+</ol>
+<pre><code class="language-sql">mysql -uroot -p
+</code></pre>
+<ol start="2">
+<li>切换至WordPress对应的数据库。</li>
+</ol>
+<pre><code class="language-sql">use wordpress;
+</code></pre>
+<ol start="3">
+<li>将实例公网IP替换为新域名。</li>
+</ol>
+<pre><code class="language-sql">update wp_options set option_value = replace(option_value, 'http://实例公网IP', 'http://www.WordPress.EcsQuickStart.com') where option_name = 'home' OR option_name = 'siteurl';
+</code></pre>
+<ol start="4">
+<li>退出MySQL。</li>
+</ol>
+<pre><code class="language-sql">exit;
+</code></pre>
+<ol start="5">
+<li>成功为WordPress网站设置新域名。</li>
+</ol>
+<h2 id="常见问题">常见问题</h2>
+<ul>
+<li>
+<p>问题描述：WordPress中设置固定链接后，跳转页面无法访问。</p>
+</li>
+<li>
+<p>解决方案：网站设置伪静态有利于搜索引擎收录网站。您在对WordPress站点设置固定链接前，需要先在Nginx服务器中设置伪静态规则。操作步骤如下：<br>
+登录搭建WordPress的ECS实例。<br>
+运行以下命令打开Nginx配置文件。</p>
+</li>
+</ul>
+<pre><code class="language-bash">vim /etc/nginx/nginx.conf
+</code></pre>
+<p>按<code>i</code>键进入编辑模式，在<code>location /</code>大括号内，添加如下代码。</p>
+<pre><code class="language-bash">if (-f $request_filename/index.html){
+rewrite (.*) $1/index.html break;
+}
+if (-f $request_filename/index.php){
+rewrite (.*) $1/index.php;
+}
+if (!-f $request_filename){
+rewrite (.*) /index.php;
+}
+</code></pre>
+<p>添加完成后按<code>Esc</code>键，并输入<code>:wq</code>并回车，保存退出文件。<br>
+运行以下命令重启Nginx服务。</p>
+<pre><code class="language-bash">systemctl restart nginx
+</code></pre>
+<p>问题描述：WordPress中更新版本、上传主题或插件时，提示需要FTP登录凭证或无法创建目录。</p>
+<p>解决方案：<br>
+登录搭建WordPress的ECS实例。<br>
+运行以下命令打开WordPress配置文件。</p>
+<pre><code class="language-bash">vim /usr/share/nginx/html/wordpress/wp-config.php
+</code></pre>
+<p>按<code>i</code>键进入编辑模式，在最下方，添加如下代码。</p>
+<pre><code class="language-bash">define(&quot;FS_METHOD&quot;,&quot;direct&quot;);
+define(&quot;FS_CHMOD_DIR&quot;, 0777);
+define(&quot;FS_CHMOD_FILE&quot;, 0777);
+</code></pre>
+<p>添加完成后按<code>Esc</code>键，并输入<code>:wq</code>并回车，保存退出文件。<br>
+返回WordPress仪表盘，刷新页面，可解决需要FTP登录凭证的问题。<br>
+如果仍存在无法创建目录的问题，需再次返回ECS实例，运行以下命令，将网站根目录的权限用户更新为Nginx对应的用户，本示例环境中为nginx用户。</p>
+<pre><code class="language-bash">chown -R nginx /usr/share/nginx/html/wordpress
+</code></pre>
+<br>
+<br>
+<hr>
+<blockquote>
+<p>本文使用 CC BY-NC-ND 4.0 许可协议   <a href="https://blog.xicrosoft.ml/post/licenses/">©版权声明</a><br>
+著作权归 Xicrosoft's Blog 编辑团队所有<br>
+转载请注明原文链接与作者，且不可修改文中内容</p>
+</blockquote>
+<hr>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SIP 系统完整性保护]]></title>
         <id>http://blog.xicrosoft.ml/post/sip/</id>
@@ -24,6 +260,23 @@
 <p>系统完整性保护是 macOS 所采用的一项安全技术，能够帮助防止潜在恶意软件修改 Mac 上受保护的文件和文件夹。系统完整性保护可以限制 root 用户帐户，以及 root 用户能够在 Mac 操作系统的受保护部分完成的操作。</p>
 </blockquote>
 <!-- more -->
+<p><ul class="markdownIt-TOC">
+<li><a href="#%E6%B2%99%E7%9B%92">沙盒</a></li>
+<li><a href="#macos-%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%89%E5%85%A8%E5%88%92%E5%88%86">MacOS 应用的安全划分</a></li>
+<li><a href="#%E5%85%B3%E9%97%AD-sip-%E7%9A%84%E5%BD%B1%E5%93%8D">关闭 SIP 的影响</a></li>
+<li><a href="#%E5%85%B3%E9%97%AD-sip">关闭 SIP</a>
+<ul>
+<li><a href="#%E5%87%86%E5%A4%87">准备</a>
+<ul>
+<li><a href="#%E6%A3%80%E6%9F%A5-sip-%E7%8A%B6%E6%80%81">检查 SIP 状态</a></li>
+</ul>
+</li>
+<li><a href="#arm-m1">ARM M1</a></li>
+<li><a href="#intel-%E5%A4%84%E7%90%86%E5%99%A8">Intel 处理器</a></li>
+</ul>
+</li>
+</ul>
+</p>
 <p><strong>SIP</strong> 类似 Windows 的防火墙，安卓手机 Root<br>
 要更好的理解 SIP 可以做什么，我们需要先来了解一个概念：<strong>沙盒</strong></p>
 <h1 id="沙盒">沙盒</h1>
@@ -781,9 +1034,9 @@
 <p>一旦提示：不能安装该软件，因为当前无法从软件更新服务器获得，你就需要手动去苹果开发者下载中心下载 command line tools 的离线安装包了。</p>
 <h1 id="解决方法">解决方法</h1>
 <ol>
-<li>打开<a href="https://developer.apple.com">Apple 开发者中心</a></li>
+<li>打开<a href="https://link.xicrosoft.ml/Apple_DAC">Apple 开发者中心</a></li>
 <li>点击顶部导航最右边的 Account，然后登录自己的 Apple ID</li>
-<li>打开<a href="https://developer.apple.com/download/more/">开发者下载中心</a></li>
+<li>打开<a href="https://link.xicrosoft.ml/Apple_DAC/D/A">开发者下载中心</a></li>
 <li>搜索 Command Line Tools<br>
 选择适用于自己 macOS 系统的版本。</li>
 </ol>
